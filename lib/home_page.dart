@@ -21,18 +21,18 @@ class _HomePageState extends State<HomePage> {
         child: Text("CONTADOR: $count"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          final response = await Navigator.push<int>(
             context,
             MaterialPageRoute(
               builder: (context) => SettingsPage(
                 count: count,
               ),
             ),
-          ).then((value) => setState(() {
-                count = value as int;
-            })
           );
+          setState(() {
+            count = response!;
+          });
         },
         child: Icon(Icons.add),
       ),
