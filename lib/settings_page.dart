@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  final int count;
+  const SettingsPage({Key? key, required this.count}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +12,12 @@ class SettingsPage extends StatelessWidget {
       ),
       body: Center(
         child: TextButton(
-          child: Text("Go To Home"),
+          child: Text("Contador"),
           onPressed: () {
-            Navigator.popUntil(context, (route) => route.isFirst);
+            var newCount = count;
+            newCount++;
+            print(newCount);
+            Navigator.pop(context, newCount);
           },
         ),
       ),
@@ -22,7 +26,9 @@ class SettingsPage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SettingsPage(),
+              builder: (context) => SettingsPage(
+                count: count,
+              ),
             ),
           );
         },
