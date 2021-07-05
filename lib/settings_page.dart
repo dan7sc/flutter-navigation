@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:navigations/settings_page.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("HomePage"),
+        title: Text("SettingsPage"),
+      ),
+      body: Center(
+        child: TextButton(
+          child: Text("Go To Home"),
+          onPressed: () {
+            Navigator.popUntil(context, (route) => route.isFirst);
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
