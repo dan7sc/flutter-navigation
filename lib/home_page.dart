@@ -29,7 +29,10 @@ class _HomePageState extends State<HomePage> {
                 count: count,
               ),
             ),
-          ).then((value) => print("DEVOLVEU $value"));
+          ).then((value) => setState(() {
+                count = value as int;
+            })
+          );
         },
         child: Icon(Icons.add),
       ),
