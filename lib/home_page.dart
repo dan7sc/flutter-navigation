@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navigations/settings_page.dart';
+import 'package:navigations/app_routes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,18 +22,19 @@ class HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push<Contador>(
+          final map = Map<String, dynamic>();
+          map.addAll({
+              "count": _count,
+              "onChanged": (value) {
+                setState(() {
+                  _count = value;
+                });
+              }
+          });
+          Navigator.pushNamed(
             context,
-            MaterialPageRoute(
-              builder: (context) => SettingsPage(
-                count: _count,
-                onChanged: (value) {
-                  setState(() {
-                    _count = value;
-                  });
-                },
-              ),
-            ),
+            AppRoutes.settings,
+            arguments: map,
           );
         },
         child: Icon(Icons.add),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navigations/home_page.dart';
+import 'package:navigations/app_routes.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,11 +12,9 @@ class LoginPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushReplacement(
+          Navigator.pushReplacementNamed(
             context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
+            AppRoutes.home,
           );
         },
         child: Icon(Icons.add),

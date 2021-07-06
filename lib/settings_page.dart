@@ -33,7 +33,7 @@ class SettingsPage extends StatelessWidget {
             newCount++;
             onChanged(newCount);
             print(newCount);
-            Navigator.pop(context);
+            Navigator.pop(context, newCount);
             // Navigator.pop(context, Contador(newCount, onChanged));
           },
         ),
