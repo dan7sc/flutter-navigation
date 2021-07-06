@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 
+class Contador {
+  final int value;
+  final Function(int value) onChanged;
+
+  Contador(
+    this.value,
+    this.onChanged,
+  );
+}
+
 class SettingsPage extends StatelessWidget {
   final int count;
-  const SettingsPage({Key? key, required this.count}) : super(key: key);
+  final Function(int value) onChanged;
+  const SettingsPage({
+    Key? key,
+    required this.count,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,23 +31,12 @@ class SettingsPage extends StatelessWidget {
           onPressed: () {
             var newCount = count;
             newCount++;
+            onChanged(newCount);
             print(newCount);
-            Navigator.pop(context, newCount);
+            Navigator.pop(context);
+            // Navigator.pop(context, Contador(newCount, onChanged));
           },
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SettingsPage(
-                count: count,
-              ),
-            ),
-          );
-        },
-        child: Icon(Icons.add),
       ),
     );
   }

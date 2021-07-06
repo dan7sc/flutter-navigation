@@ -5,11 +5,11 @@ class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  var count = 0;
+class HomePageState extends State<HomePage> {
+  var _count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -18,21 +18,23 @@ class _HomePageState extends State<HomePage> {
         title: Text("HomePage"),
       ),
       body: Center(
-        child: Text("CONTADOR: $count"),
+        child: Text("CONTADOR: $_count"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final response = await Navigator.push<int>(
+        onPressed: () {
+          Navigator.push<Contador>(
             context,
             MaterialPageRoute(
               builder: (context) => SettingsPage(
-                count: count,
+                count: _count,
+                onChanged: (value) {
+                  setState(() {
+                    _count = value;
+                  });
+                },
               ),
             ),
           );
-          setState(() {
-            count = response!;
-          });
         },
         child: Icon(Icons.add),
       ),
